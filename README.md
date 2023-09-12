@@ -5,9 +5,11 @@ Simple NoIP.com update client written in [V language](https://github.com/vlang/v
 ## Usage
 
 ```
-./vnoip <config file>
+./vnoip -c <config file> [-t]
 
 ```
+
+The optional __-t__ parameter does a dry run, doesn't send the updates to No-IP and is just used to check the config file. 
 
 ## Configuration 
 
@@ -25,10 +27,11 @@ _VNoIP_ expects a configuration file in _TOML_ with the following structure:
     username = "user2@webmail.con"
     password = "SuperSecret"
     hostname = "otherhost.noip.com"
+    ip = "1.2.3.4"
     offline = "YES"
 ```
 
-The configuration file can contain several __[[hosts]]__ sections, each one with the update_url (always the same for No-IP.com hosts) and the user credentials and the hostname to update. It also contains an _offline_ parameter that sets the No-Ip.com offline status of the hostname. 
+The configuration file can contain several __[[hosts]]__ sections, each one with the update_url (always the same for No-IP.com hosts) and the user credentials and the hostname to update. An optional _ip_ field can be used to specify an IP address to set the hostname to (if not No-IP will use the ip address of the request). It also contains an _offline_ parameter that sets the No-Ip.com offline status of the hostname. 
 
 The program can then be called from _Cron_ or _systemd/Timers_ to update the host(s) periodically.
 

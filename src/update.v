@@ -23,11 +23,15 @@ fn update(host Host) NoIPCode {
 	// create base64 encoded auth header
 	auth_str := 'Basic ' + base64.encode_str('${host.username}:${host.password}')
 
+	// create update url
+	query_url := host.update_url + '?hostname=${host.hostname}&offline=${host.offline}' +
+		if host.ip != '' { '&myip=${host.ip}' } else { '' }
+
 	// create request and add header and params
 	mut request := http.Request{
 		version: http.Version.v1_0
 		method: http.Method.get
-		url: host.update_url + '?hostname=${host.hostname}&offline=${host.offline}'
+		url: query_url
 		user_agent: user_agent_str
 	}
 	// add headers and send request
