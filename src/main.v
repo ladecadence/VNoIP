@@ -1,25 +1,39 @@
 module main
 
 import os
+import os.cmdline
 
 fn usage() {
 	println('Usage: ')
-	println('${os.args[0]} <config file>')
+	println('${os.args[0]} -c <config file> [-t]')
+	println("    -t : test mode, don't send the updates.")
 }
 
 fn main() {
+	// test mode
+	mut test := false
+
 	// check args
-	if os.args.len < 2 {
+	config_file := cmdline.option(os.args, '-c', '')
+	if config_file == '' {
 		usage()
 		exit(1)
 	}
 
-	// get configuration
-	config := get_config(os.args[1])
+	if '-t' in cmdline.only_options(os.args) {
+		test = true
+	}
+
+	// read configuration
+	config := get_config(config_file)
 
 	// send update requests
-	for host in config.hosts {
-		ok := update(host)
-		eprintln('Host: ${host.hostname} ${ok}')
+	if !test {
+		for host in config.hosts {
+			ok := update(host)
+			eprintln('Host: ${host.hostname} ${ok}')
+		}
+	} else {
+		eprintln('Config ok')
 	}
 }
