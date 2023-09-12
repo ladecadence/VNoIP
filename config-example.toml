@@ -1,0 +1,13 @@
+[[hosts]]
+    update_url = "https://dynupdate.no-ip.com/nic/update"
+    username = "user@email.con"
+    password = "SecretPASSWD"
+    hostname = "hostname.noip.com"
+    offline = "NO"
+[[hosts]]
+    update_url = "https://dynupdate.no-ip.com/nic/update"
+    username = "user2@webmail.con"
+    password = "SuperSecret"
+    hostname = "otherhost.noip.com"
+    offline = "YES"
+
