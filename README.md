@@ -35,6 +35,25 @@ The configuration file can contain several __[[hosts]]__ sections, each one with
 
 The program can then be called from _Cron_ or _systemd/Timers_ to update the host(s) periodically.
 
+## Build and Install
+
+* Requisites: V Language
+
+Clone the repository
+
+```
+$ git clone https://github.com/ladecadence/VNoIP.git
+```
+
+And build it
+```
+$ cd VNoIP
+$ v .
+```
+
+Then copy and edit the example config file to suit your needs.
+
+
 ## License
 
 VNoIP is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See LICENSE.
